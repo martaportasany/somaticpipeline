@@ -1,0 +1,8 @@
+channels:
+  - bioconda
+  - r
+  - defaults
+  - conda-forge
+dependencies:
+  - varscan=2.4.4
+  
