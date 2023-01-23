@@ -384,18 +384,6 @@ rule CalculateContamination_matched:
 	shell:
 		"gatk CalculateContamination -I {input.tumor} -matched {input.normal} -O {output} &> {log}"
 
-#rule CollectF1R2Counts:
-#	input:
-#		ref=config['refGenomeDir'] + "genome.fasta",
-#		tumor= config['bamsdir'] + "{group}/recal/{group}-D.bam"	
-#	output:
-#		"f1r2.tar.gz"
-#	log:
-#		"logs/mutect2/CollectF1R2Counts.log"
-#	##aquí necesito un group yo creo
-#	shell:
-#		"gatk CollectF1R2Counts -R {input.ref} -I {input.tumor} -O f1r2.tar.gz &> {log}"
-
 rule learnorientationmodel:
 	input:
 		f1r2="results/{group}/Mutect2/f1r2.tar.gz"
@@ -708,7 +696,7 @@ rule merge_VS_snp_indel:
 	shell:
 		"bcftools merge {input.snp} {input.indel} --force-samples > {output}"	
 		
-#################################################################RTG-ANALYSIS
+#################################################################RTG-ANALYSIS (en proceso)
 
 rule RTG_baseline:
     input:
@@ -1061,7 +1049,7 @@ rule Final_filter:
         "scripts/Final_filter.R --query {input.query} --vepcustom {input.vep} --format {input.format} --acmg {input.acmg} --allcancer {input.allcancer} --blodcancer {input.blodcancer} --childhood {input.childhood} --output {output} &> {log}"
 
 
-#########################Maftools#############
+#########################MAFTOOLS#############
 ##########DESCOMPRIMIR
 
 rule descompress:
